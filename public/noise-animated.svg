@@ -1,0 +1,18 @@
+<svg viewBox='0 0 150 150' xmlns='http://www.w3.org/2000/svg'>
+  <filter id='noiseFilter'>
+    <feTurbulence 
+      type='fractalNoise' 
+      baseFrequency='.75' 
+      numOctaves='1' 
+      stitchTiles='stitch'
+      result='noise'
+      seed='0'
+      >
+           <animate attributeName="seed" from="0" to="39" dur="4s" repeatCount="indefinite"/>
+
+      </feTurbulence>
+  </filter>
+  
+  <rect width='150' height='150' fill='#d0d0d4'/>
+  <rect width='150' height='150' filter='url(#noiseFilter)' opacity='.75'/>
+</svg>

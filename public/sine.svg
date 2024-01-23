@@ -1,0 +1,19 @@
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+width="200" height="100" viewBox="0 0 200 100">
+  <defs>
+    <path id="double-wave"
+        fill="none"
+        stroke="#121212"
+          d="M0 50
+             C 40 10, 60 10, 100 50 C 140 90, 160 90, 200 50
+             C 240 10, 260 10, 300 50 C 340 90, 360 90, 400 50
+             " 
+       
+             />
+  </defs>
+
+  <use xlink:href="#double-wave" x="0" y="0">
+    <animate attributeName="x" from="0" to="-200" dur="3s"
+             repeatCount="indefinite"/>
+  </use>
+</svg>

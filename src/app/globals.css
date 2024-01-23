@@ -6,22 +6,90 @@
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
+  --highlight: #09090b;
+  --bg: #aaaaaa;
+  --bgdarker: #a4a4a4;
+  --primarytext: #444;
+  --offwhite: #f1f5f9;
+  --offblack: #121212;
+  --blue: #0000d3;
+
+  scroll-behavior: smooth;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+/* Font Classes */
+.logo {
+  font-family: 'Work Sans', sans-serif;
+  font-weight: 600;
+  color: var(--offwhite);
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+.andand {
+  font-family: 'Work Sans', sans-serif;
+  font-weight: 600;
+  color: var(--offwhite);
+}
+
+.dandandd {
+  font-family: 'Work Sans', sans-serif;
+  font-weight: 600;
+}
+
+.title {
+  font-family: 'Work Sans', sans-serif;
+  font-weight: 600;
+  font-size: 36px;
+  line-height: 40px;
+  color: var(--offwhite);
+  letter-spacing: 0.05em;
+}
+
+/* Link Classes */
+.header-link {
+  cursor: pointer;
+  font-weight: 600;
+  color: var(--offwhite);
+  transition: color 0.3s;
+}
+.header-link:hover {
+  color: var(--blue);
+}
+.main-link {
+  cursor: pointer;
+  font-weight: 600;
+  transition: color 0.3s;
+  color: var(--offwhite);
+}
+.main-link-title {
+  cursor: pointer;
+  font-weight: 600;
+  transition: color 0.3s;
+  text-transform: uppercase;
+}
+.main-link:hover,
+.main-link-title:hover {
+  color: var(--blue);
+}
+
+.footer-link {
+  cursor: pointer;
+  font-weight: 600;
+  color: var(--offwhite);
+  transition: color 0.3s;
+}
+
+.footer-link:hover {
+  color: var(--blue);
+}
+
+/* Shadow Classes */
+
+.upshadow {
+  box-shadow: #aaa 0px -4px 4px;
+}
+.simpleshadow {
+  box-shadow: #aaa 2px 2px 4px;
+}
+.headershadow {
+  box-shadow: rgba(12, 12, 12, 0.2) 0 0 4px;
 }
