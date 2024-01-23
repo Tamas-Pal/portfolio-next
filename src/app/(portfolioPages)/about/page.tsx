@@ -1,4 +1,4 @@
-import config from '@/config';
+import config from 'config';
 import { MDXRemoteSerializeResult } from 'next-mdx-remote';
 import { serialize } from 'next-mdx-remote/serialize';
 import login from '@/app/_utils/login';

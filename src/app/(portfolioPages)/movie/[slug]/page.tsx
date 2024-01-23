@@ -1,4 +1,4 @@
-import config from '@/config';
+import config from 'config';
 import MovieDetails from '@/app/_components/generic/content/MovieDetails';
 import Thumbnails from '@/app/_components/generic/media/Thumbnails';
 import categoryQuery from '@/app/_utils/categoryQuery';
@@ -35,10 +35,7 @@ export default async function Movie({ params }: Props) {
         id='mobile-title-wrap'
         className='lg:hidden flex flex-col justify-start mt-2 lg:mt-0 gap-y-4'
       >
-        <h1
-          id='mobile-title'
-          className={`justify-self-start self-start title`}
-        >
+        <h1 id='mobile-title' className={`justify-self-start self-start title`}>
           {movie.Movie}
         </h1>
       </section>

@@ -1,5 +1,5 @@
 import Nav from '../_components/header/Nav';
-import config from '@/config';
+import config from 'config';
 import Footer from '../_components/footer/Footer';
 import PagesHeader from '../_components/header/PagesHeader';
 
@@ -8,8 +8,6 @@ export default async function PortfolioPages({
 }: {
   children: React.ReactNode;
 }) {
-
-
   const { data: industries } = await getIndustriesData();
 
   return (
@@ -20,7 +18,9 @@ export default async function PortfolioPages({
     >
       <PagesHeader />
       <div className='px-4 sm:px-8 md:px-20 lg:px-32 flex justify-center'>
-        <p className={`w-[min(100%,1536px)] justify-self-center uppercase text-primarytext font-semibold flex justify-center md:justify-end mt-4 md:mt-[-16px] md:z-40`}>
+        <p
+          className={`w-[min(100%,1536px)] justify-self-center uppercase text-primarytext font-semibold flex justify-center md:justify-end mt-4 md:mt-[-16px] md:z-40`}
+        >
           <span className='mr-2 text-offwhite'>{'{'}</span>
           <span className=''>design</span>
           <span className='mx-4 text-offwhite'>&&</span>

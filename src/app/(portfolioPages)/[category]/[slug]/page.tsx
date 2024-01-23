@@ -1,6 +1,6 @@
 import GenericResultsPage from '@/app/_components/generic/content/GenericResultsPage';
 import categoryQuery from '@/app/_utils/categoryQuery';
-import config from '@/config';
+import config from 'config';
 import { Category } from '@/types/category';
 import { Field } from '@/types/field';
 import { Tech } from '@/types/tech';

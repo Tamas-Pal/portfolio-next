@@ -1,6 +1,6 @@
 import Thumbnails from '@/app/_components/generic/media/Thumbnails';
 import categoryQuery from '@/app/_utils/categoryQuery';
-import config from '@/config';
+import config from 'config';
 import gridStyles from '@/styles/gridStyles';
 import Link from 'next/link';
 import { Industry } from '@/types/industry';

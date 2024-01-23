@@ -1,4 +1,4 @@
-import config from '@/config';
+import config from 'config';
 import qs from 'qs';
 import { Project } from '@/types/project';
 import { Media } from '@/types/Media';

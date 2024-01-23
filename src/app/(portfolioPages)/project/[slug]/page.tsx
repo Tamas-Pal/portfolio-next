@@ -1,4 +1,4 @@
-import config from '@/config';
+import config from 'config';
 //import { PageProps } from '.next/types/app/project/[slug]/page';
 import ProjectMeta from '@/app/(portfolioPages)/project/[slug]/_components/ProjectMeta';
 import { Project } from '@/types/project';

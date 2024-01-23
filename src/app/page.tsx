@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import config from '@/config';
+import config from 'config';
 import login from './_utils/login';
 import qs from 'qs';
 import { Landing } from '@/types/landing';
@@ -51,7 +51,7 @@ export default async function Home() {
             className='mt-2 hover:text-blue font-semibold text-offwhite transition-colors duration-300'
             href='#projects'
           >
-          <h3>Check out the work!</h3>  
+            <h3>Check out the work!</h3>
           </Link>
 
           {/* navigation */}
