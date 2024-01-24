@@ -1,4 +1,3 @@
-import config from 'config';
 import qs from 'qs';
 import { Project } from '@/types/project';
 import { Media } from '@/types/Media';
@@ -27,7 +26,7 @@ export default async function categoryQuery(
   );
 
   const { data: projects } = await fetch(
-    `${config.api}/projects?${imageQuery}`
+    `${process.env.CMS_APIURL}/projects?${imageQuery}`
   ).then((res) => res.json());
 
   const images: Media[] = [];
@@ -43,7 +42,7 @@ export default async function categoryQuery(
     // (Category name is fetched through relation field of project,
     // so if there are no projects, a new fetch is needed for the category.)
     const { data } = await fetch(
-      `${config.api}/${typeFormats.api}/?populate=*&filters[Slug][$eq]=${params.slug}`
+      `${process.env.CMS_APIURL}/${typeFormats.api}/?populate=*&filters[Slug][$eq]=${params.slug}`
     ).then((res) => res.json());
 
     category = data[0].attributes;

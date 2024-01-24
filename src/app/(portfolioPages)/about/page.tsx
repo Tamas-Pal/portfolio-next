@@ -1,4 +1,3 @@
-import config from 'config';
 import { MDXRemoteSerializeResult } from 'next-mdx-remote';
 import { serialize } from 'next-mdx-remote/serialize';
 import login from '@/app/_utils/login';
@@ -9,7 +8,7 @@ import Profile from '@/app/_components/blocks/Profile';
 
 export default async function About() {
   const loginResponseData = await login();
-  const res = await fetch(`${config.api}/profiles/1?populate[0]=Image`, {
+  const res = await fetch(`${process.env.CMS_APIURL}/profiles/1?populate[0]=Image`, {
     headers: {
       Authorization: `Bearer ${loginResponseData?.jwt}`,
     },

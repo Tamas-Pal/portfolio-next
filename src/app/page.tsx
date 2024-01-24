@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import config from 'config';
 import login from './_utils/login';
 import qs from 'qs';
 import { Landing } from '@/types/landing';
@@ -14,7 +13,7 @@ export default async function Home() {
 
   const query = landingQuery();
 
-  const res = await fetch(`${config.api}/landing?${query}`, {
+  const res = await fetch(`${process.env.CMS_APIURL}/landing?${query}`, {
     headers: {
       Authorization: `Bearer ${loginResponseData?.jwt}`,
     },
@@ -107,7 +106,7 @@ const landingQuery = () =>
 
 // request Projects menu items
 async function getIndustriesData() {
-  const res = await fetch(`${config.api}/industries`);
+  const res = await fetch(`${process.env.CMS_APIURL}/industries`);
 
   if (!res.ok) {
     throw new Error('failed to fetch data');

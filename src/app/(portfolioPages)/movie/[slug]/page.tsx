@@ -1,4 +1,3 @@
-import config from 'config';
 import MovieDetails from '@/app/_components/generic/content/MovieDetails';
 import Thumbnails from '@/app/_components/generic/media/Thumbnails';
 import categoryQuery from '@/app/_utils/categoryQuery';
@@ -14,7 +13,7 @@ type Props = {
 };
 
 export async function generateStaticParams() {
-  const { data: movies } = await fetch(`${config.api}/movies`, {
+  const { data: movies } = await fetch(`${process.env.CMS_APIURL}/movies`, {
     // cache: 'no-store',
   }).then((res) => res.json());
   return movies.map((movie: Movie) => movie.attributes.Slug);

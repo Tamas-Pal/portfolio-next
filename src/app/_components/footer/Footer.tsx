@@ -1,11 +1,10 @@
-import config from 'config';
 import PersonalLinks from '../generic/content/links/PersonalLinks';
 import login from '@/app/_utils/login';
 
 export default async function Footer() {
   // Request contacts with auth
   const loginResponseData = await login();
-  const res = await fetch(`${config.api}/contacts?populate=*`, {
+  const res = await fetch(`${process.env.CMS_APIURL}/contacts?populate=*`, {
     headers: {
       Authorization: `Bearer ${loginResponseData?.jwt}`,
     },

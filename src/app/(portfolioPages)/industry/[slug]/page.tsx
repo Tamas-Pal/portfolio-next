@@ -1,13 +1,9 @@
 import Thumbnails from '@/app/_components/generic/media/Thumbnails';
 import categoryQuery from '@/app/_utils/categoryQuery';
-import config from 'config';
 import gridStyles from '@/styles/gridStyles';
-import Link from 'next/link';
 import { Industry } from '@/types/industry';
 import { Movie } from '@/types/movie';
-import { Project } from '@/types/project';
 import ProjectList from '@/app/_components/generic/content/ProjectList';
-import { Fragment } from 'react';
 import { MovieList } from './MovieList';
 
 type Props = {
@@ -16,7 +12,7 @@ type Props = {
 };
 
 export async function generateStaticParams() {
-  const { data: industries } = await fetch(`${config.api}/industries`).then(
+  const { data: industries } = await fetch(`${process.env.CMS_APIURL}/industries`).then(
     (res) => res.json()
   );
 
@@ -24,10 +20,6 @@ export async function generateStaticParams() {
     slug: industry.attributes.Slug,
   }));
 }
-/*
-const gapStyles = `gap-x-[96px] gap-y-[16px] sm:gap-y-8 lg:gap-y-[96px]`;
-const gridStyles = `max-w-[95vw] grid lg:grid-cols-onetwo grid-flow-rows ${gapStyles} place-self-center w-[min(100%,1536px)] lg:pt-16 pb-20 lg:py-24`;
-*/
 
 export default async function Industry({ params }: Props) {
   const typeFormats = {
@@ -40,7 +32,7 @@ export default async function Industry({ params }: Props) {
 
   if (params.slug === 'the-movies') {
     const { data } = await fetch(
-      `${config.api}/movies?populate[0]=projects&sort[0]=ProductionYear:desc`
+      `${process.env.CMS_APIURL}/movies?populate[0]=projects&sort[0]=ProductionYear:desc`
     ).then((res) => res.json());
     moviesData = data;
   }

@@ -1,5 +1,4 @@
 import Nav from '../_components/header/Nav';
-import config from 'config';
 import Footer from '../_components/footer/Footer';
 import PagesHeader from '../_components/header/PagesHeader';
 
@@ -43,7 +42,7 @@ export default async function PortfolioPages({
 }
 
 async function getIndustriesData() {
-  const res = await fetch(`${config.api}/industries`);
+  const res = await fetch(`${process.env.CMS_APIURL}/industries`);
 
   if (!res.ok) {
     throw new Error('failed to fetch data');

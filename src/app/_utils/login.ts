@@ -1,4 +1,3 @@
-import config from 'config';
 
 export default async function login() {
   const loginData = {
@@ -6,7 +5,7 @@ export default async function login() {
     password: process.env.CMS_PASSWORD,
   };
 
-  const login = await fetch(`${config.api}/auth/local`, {
+  const login = await fetch(`${process.env.CMS_APIURL}/auth/local`, {
     method: 'POST',
     headers: {
       Accept: 'application/json',

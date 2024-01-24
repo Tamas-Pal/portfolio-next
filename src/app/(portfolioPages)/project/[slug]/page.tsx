@@ -1,5 +1,3 @@
-import config from 'config';
-//import { PageProps } from '.next/types/app/project/[slug]/page';
 import ProjectMeta from '@/app/(portfolioPages)/project/[slug]/_components/ProjectMeta';
 import { Project } from '@/types/project';
 import Images from '@/app/_components/generic/media/Images';
@@ -16,7 +14,7 @@ type Props = {
 };
 
 export async function generateStaticParams() {
-  const { data: projects } = await fetch(`${config.api}/projects`, {
+  const { data: projects } = await fetch(`${process.env.CMS_APIURL}/projects`, {
     //cache: 'no-store',
   }).then((res) => res.json());
   return projects.map((project: Project) => project.attributes.Slug);
@@ -24,7 +22,7 @@ export async function generateStaticParams() {
 
 export default async function Project({ params }: Props) {
   const { data } = await fetch(
-    `${config.api}/projects/?populate=*&filters[Slug][$eq]=${params.slug}`
+    `${process.env.CMS_APIURL}/projects/?populate=*&filters[Slug][$eq]=${params.slug}`
     // { cache: 'no-store' }
   ).then((res) => res.json());
 
