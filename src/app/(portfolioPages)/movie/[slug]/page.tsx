@@ -29,7 +29,7 @@ export default async function Movie({ params }: Props) {
     ? movie.Links['Trailer'].split('watch?v=').join('embed/')
     : undefined;
   return (
-    <div id='content' className={gridStyles}>
+    <div id='content' className={gridStyles + ' lg:grid-cols-[1fr_2fr]'}>
       <section
         id='mobile-title-wrap'
         className='lg:hidden flex flex-col justify-start mt-2 lg:mt-0 gap-y-4'

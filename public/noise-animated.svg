@@ -8,11 +8,11 @@
       result='noise'
       seed='0'
       >
-           <animate attributeName="seed" from="0" to="39" dur="4s" repeatCount="indefinite"/>
+           <animate attributeName="seed" from="0" to="10" dur="1s" repeatCount="indefinite"/>
 
       </feTurbulence>
   </filter>
   
   <rect width='150' height='150' fill='#d0d0d4'/>
-  <rect width='150' height='150' filter='url(#noiseFilter)' opacity='.75'/>
+  <rect width='150' height='150' filter='url(#noiseFilter)' opacity='1'/>
 </svg>

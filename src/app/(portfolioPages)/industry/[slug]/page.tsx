@@ -41,7 +41,7 @@ export default async function Industry({ params }: Props) {
   const industry = category as Industry['attributes'];
 
   return (
-    <div id='content' className={gridStyles}>
+    <div id='content' className={gridStyles + ' lg:grid-cols-[1fr_2fr]'}>
       {/* Title + subheading section only on mobile */}
       <section
         id='mobile-title-wrap'

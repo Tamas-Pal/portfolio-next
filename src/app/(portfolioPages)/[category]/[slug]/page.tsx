@@ -1,4 +1,4 @@
-import GenericResultsPage from '@/app/_components/generic/content/GenericResultsPage';
+import GenericResultsPage from './_components/GenericResultsPage';
 import categoryQuery from '@/app/_utils/categoryQuery';
 import { Category } from '@/types/category';
 import { Field } from '@/types/field';
@@ -16,9 +16,9 @@ export async function generateStaticParams() {
 
   await Promise.all(
     categoryTypes.map(async (categoryType, i) => {
-      const { data } = await fetch(`${process.env.CMS_APIURL}/${categoryType}`).then(
-        (res) => res.json()
-      );
+      const { data } = await fetch(
+        `${process.env.CMS_APIURL}/${categoryType}`
+      ).then((res) => res.json());
 
       if (data) {
         return data.map((item: Category | Field | Tech, j: number) => {

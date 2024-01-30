@@ -30,15 +30,11 @@ const delays = [
 
 const modalDelays = ['delay-[450ms] md:delay-0', 'delay-[750ms] md:delay-300'];
 
-//throw new Error("Error")
 
-
-export default function Images(props: {
+export default function Images({images, clickable = true}: {
   images: Media[];
   clickable?: boolean;
 }) {
-  const { images } = props;
-  const clickable = props.clickable === undefined ? true : props.clickable;
 
   const [clicked, setClicked] = useState({
     url: images[0].attributes.url,
@@ -73,12 +69,9 @@ export default function Images(props: {
           return (
             <div
               key={i}
-              className={`relative ${firstImage.span} flex items-start overflow-hidden`} //  bg-dotssm // hover:translate-x-2 hover:translate-y-[-8px] transition-transform duration-1000
+              className={`relative ${firstImage.span} flex items-start overflow-hidden`}
             >
               <div
-                // className={`transition-transform duration-[2100ms] cursor-pointer group ${
-                //   loaded ? 'translate-y-0' : 'translate-y-[-101%]'
-                // } ${i < delays.length ? delays[i] : ''}`}
                 className={`transition duration-[1200ms] cursor-pointer group ${
                   loaded ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-96'
                 } ${i < delays.length ? delays[i] : ''}`}
@@ -95,7 +88,7 @@ export default function Images(props: {
                 }}
               >
                 <Image
-                  className={`object-contain object-left relative transition-[transform,filter,border-radius] duration-[2100ms,300ms,300ms] grayscale-0 rounded-none group-hover:grayscale pointer-events-none`} // group-hover:rounded-md
+                  className={`object-contain object-left relative transition-[transform,filter] duration-[2100ms,900ms] ${clickable && 'grayscale-0 group-hover:grayscale blur-none group-hover:blur-md'} pointer-events-none`}
                   src={url}
                   width={width}
                   height={height}
@@ -109,12 +102,10 @@ export default function Images(props: {
                 {clickable && (
                   <>
                     <div
-                      className={`absolute top-0 left-0 cursor-pointer w-full h-full bg-blue mix-blend-screen opacity-0 group-hover:opacity-100 transition-[opacity,border-radius] duration-[300ms] pointer-events-none `} //  group-hover:rounded-md
-                      //  className={`absolute top-0 left-0 cursor-pointer w-full h-full bg-blue transition-opacity delay-300 pointer-events-none aspect-[${width}/${height}] ${hoverStyles}`}
+                      className={`absolute top-0 left-0 cursor-pointer w-full h-full bg-blue mix-blend-screen opacity-0 group-hover:opacity-100 transition-[opacity] duration-[900ms] pointer-events-none `} 
                     ></div>
                     <div
-                      className={`absolute top-0 left-0 cursor-pointer w-full h-full opacity-0 group-hover:opacity-100 transition-[opacity,border-radius] duration-[300ms] pointer-events-none `} // bg-dotssmblue group-hover:rounded-md
-                      //  className={`absolute top-0 left-0 cursor-pointer w-full h-full bg-blue transition-opacity delay-300 pointer-events-none aspect-[${width}/${height}] ${hoverStyles}`}
+                      className={`absolute top-0 left-0 cursor-pointer w-full h-full opacity-0 group-hover:opacity-100 transition-[opacity] duration-[900ms] pointer-events-none `}
                     >
                       <p className='absolute top-0 m-2 ml-2 px-2 bg-primarytext text-offwhite'>
                         {alternativeText}
@@ -129,7 +120,7 @@ export default function Images(props: {
       })}
       {clickable && (
         <div
-          className={`fixed bg-offwhite top-0 left-0 w-full h-full z-50 cursor-pointer origin-left duration-300 transition-[opacity,transform] ${clicked.transformStyles[1]} ${clicked.modalDelayStyles[0]}`}
+          className={`fixed bg-offwhite top-0 left-0 w-full h-full z-[110] cursor-pointer origin-left duration-300 transition-[opacity,transform] ${clicked.transformStyles[1]} ${clicked.modalDelayStyles[0]}`}
           onClick={() => {
             setClicked((prev) => {
               return {

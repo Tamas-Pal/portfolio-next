@@ -30,17 +30,19 @@ export function Block({
   const [containerRef, isVisible] = useIsVisible({
     root: null,
     rootMargin: '0px',
-    threshold: 0.5,
+    threshold: 0.24,
   });
-
+  /*
   let paddingInvisible =
-    'pt-14 pb-12 md:pt-14 md:pb-20 lg:py-24 px-2 sm:px-4 md:px-10 lg:px-16 xl:px-12';
+ // 'pt-14 pb-12 md:pt-14 md:pb-20 lg:py-24 px-2 sm:px-4 md:px-10 lg:px-16 xl:px-12';
+  'pt-14 pb-12 md:pt-14 md:pb-20 lg:py-24 px-1 sm:px-2 md:px-5 lg:px-8 xl:px-8';
+  */
   let padding =
     'pt-14 pb-12 md:pt-14 md:pb-20 lg:py-24 px-4 sm:px-8 md:px-20 lg:px-32 xl:px-32';
 
   // alternating background color for blocks
   let backgroundColor = (() => {
-    if (landing.attributes.Blocks.length % 2 === 0) {
+    if (landing.attributes.Blocks.length % 2 === 1) {
       if (index % 2 === 0) {
         return 'bg-noise';
       } else {
@@ -60,11 +62,17 @@ export function Block({
       <section
         ref={containerRef}
         className={`${padding} relative overflow-hidden ${zIndex[index]} ${
-          isVisible ? `${padding}` : `${paddingInvisible}`
-        } grid justify-stretch  ${backgroundColor} border-t border-offwhite rounded-t-2xl upshadow transition-all duration-[1200ms] 
+          isVisible ? padding : padding
+        } grid justify-stretch  ${backgroundColor} border-t border-offwhite rounded-t-2xl upshadow transition-all duration-[900ms] 
        group`}
       >
-        {children}
+        <div
+          className={`relative grid justify-stretch items-center transition-[transform,opacity] duration-[900ms] ${
+            isVisible ? 'translate-y-0 opacity-100' : 'translate-y-[40px] lg:translate-y-[80px] opacity-0'
+          }`}
+        >
+          {children}
+        </div>
       </section>
     </>
   );

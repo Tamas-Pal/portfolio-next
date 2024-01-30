@@ -29,26 +29,27 @@ export default function HomeHeader() {
   // Handler when page is scrolled
   const handleScroll = () => {
     //console.log(window.scrollY);
-    if (window.scrollY > 16) {
+    if (window.scrollY > 0) {
       setScrolled(true);
     } else {
       setScrolled(false);
     }
   };
 
+
   return (
     <div
       id='header-wrap'
       className={`sticky top-0 justify-self-center self-start md:justify-self-start ${
         isScrolled ? `h-[calc(60px+12px)]` : `h-[140px]`
-      } z-40`}
+      } z-40 transition-[height] duration-[900ms]`}
     >
       <header
         className={`max-w-screen-2xl mx-auto -mb-8 px-1.5 rounded-b-2xl transition-all duration-[900ms] md:duration-[1800ms] ${
           isScrolled ? scrolledStyles : initStyles
         }`}
       >
-        <Link href='/'>
+        <Link href='#intro-wrap'>
           <Three />
         </Link>
       </header>

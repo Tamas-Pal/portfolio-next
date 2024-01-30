@@ -34,7 +34,7 @@ export default async function Project({ params }: Props) {
   );
 
   return (
-    <div id='content' className={`${gridStyles}`}>
+    <div id='content' className={gridStyles + ' lg:grid-cols-[1fr_2fr]'}>
       <h1
         id='mobile-title'
         className={`lg:hidden title text-offwhite font-semibold justify-self-start self-start`}

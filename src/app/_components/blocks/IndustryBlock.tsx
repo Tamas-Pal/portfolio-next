@@ -32,7 +32,7 @@ export const IndustryBlock = ({
           </h1>
           <h1
             className={`ml-0.5 ${
-              index % 2 === 1 ? 'bg-noise' : 'bg-noisedarker'
+              index % 2 === 0 ? 'bg-noise' : 'bg-noisedarker'
             } absolute top-[calc(-98%-1rem)] pointer-events-none group-hover:top-[0%] transition-all duration-[2100ms] [white-space:nowrap;] title [writing-mode:vertical-lr]`}
           >
             {`${industry.Industry} ${industry.Industry}`}

@@ -30,7 +30,7 @@ export default function PagesHeader() {
   // Handler when page is scrolled
   const handleScroll = () => {
     //console.log(window.scrollY);
-    if (window.scrollY > 16) {
+    if (window.scrollY > 0) {
       setScrolled(true);
     } else {
       setScrolled(false);
@@ -41,7 +41,7 @@ export default function PagesHeader() {
     <div
       className={`sticky top-0 justify-self-center px-4 sm:px-8 md:mx-20 lg:px-32 2xl:mx-32 ${
         isScrolled ? `h-[calc(60px+12px)]` : `h-[140px]`
-      } z-[40] w-full max-w-[1792px]`}
+      } z-[100] w-full max-w-[1792px] transition-[height] duration-[900ms]`}
     >
       <div
         className={`flex justify-center lg:justify-start relative max-w-[1536px] transition-all duration-[900ms] md:duration-[1800ms]`}
@@ -49,7 +49,7 @@ export default function PagesHeader() {
         <header
           className={`relative rounded-b-2xl transition-all duration-[900ms] md:duration-[1800ms] px-1.5 ${
             isScrolled ? scrolledStyles : initStyles
-          } ${isScrolled ? `lg:-left-[calc(44px)]` : `lg:-left-[calc(52px)]`}`}
+          } ${isScrolled ? `lg:-left-[calc(29px)]` : `lg:-left-[calc(52px)]`}`}
         >
           <Link href='/'>
             <Three />

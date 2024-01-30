@@ -1,10 +1,10 @@
-'use client';
+// 'use client';
 
 import { Media } from '@/types/Media';
 import { Project } from '@/types/project';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useState } from 'react';
+//import { useState } from 'react';
 
 const delays = [
   'delay-[0ms,300ms,300ms]',
@@ -43,20 +43,33 @@ for (let i = 0; i < 5; i++) {
 console.log(groupSelectors, groupOpacities, groupGrayscales);
 */
 
-let groupSelectors = [ 'group/one', 'group/two', 'group/three', 'group/four', 'group/five' ]
+let groupSelectors = [
+  'group/one',
+  'group/two',
+  'group/three',
+  'group/four',
+  'group/five',
+];
 let groupOpacities = [
   'group-hover/one:opacity-100',
   'group-hover/two:opacity-100',
   'group-hover/three:opacity-100',
   'group-hover/four:opacity-100',
-  'group-hover/five:opacity-100'
+  'group-hover/five:opacity-100',
 ];
 let groupGrayscales = [
   'group-hover/one:grayscale-0',
   'group-hover/two:grayscale-0',
   'group-hover/three:grayscale-0',
   'group-hover/four:grayscale-0',
-  'group-hover/five:grayscale-0'
+  'group-hover/five:grayscale-0',
+];
+let groupImageFX = [
+  'group-hover/one:blur-md group-hover/one:grayscale', // group-hover/one:scale-110
+  'group-hover/two:blur-md group-hover/two:grayscale', // group-hover/two:scale-110
+  'group-hover/three:blur-md group-hover/three:grayscale', // group-hover/three:scale-110
+  'group-hover/four:blur-md group-hover/four:grayscale', // group-hover/four:scale-110
+  'group-hover/five:blur-md group-hover/five:grayscale', // group-hover/five:scale-110
 ];
 
 export default function FeaturedImages({
@@ -75,15 +88,14 @@ export default function FeaturedImages({
     images[i].projectSlug = project.attributes.Slug;
   });
 
-  const [loaded, setLoaded] = useState(false);
+  // const [loaded, setLoaded] = useState(false);
 
   return (
     <div
-      className={`relative p-8 overflow-hidden flex flex-col md:flex-row gap-8 justify-center items-center min-h-[264px] border border-offwhite ${
-        index % 2 === 0 ? 'bg-noisedarker' : 'bg-noise'
-      }`} 
+      className={`relative p-8 overflow-hidden flex flex-col lg:flex-row gap-8 justify-center items-center min-h-[264px] border border-offwhite ${
+        index % 2 === 1 ? 'bg-noisedarker' : 'bg-noise'
+      }`}
     >
-
       {images.map((image, i: number) => {
         const { url, width, height, alternativeText } = image;
 
@@ -102,38 +114,44 @@ export default function FeaturedImages({
 
         if (url) {
           return (
-              <Link
-                key={i}
-                className={`relative hover:shrink-0 h-7/12 md:w-7/12 overflow-hidden ${groupSelectors[i]} transition-[flex-shrink,transform,opacity] duration-[2100ms,1200ms,1200ms] ${
-                  delays[i]
-                } ${
-                  loaded
-                    ? 'translate-y-0 opacity-100'
-                    : '-translate-y-96 opacity-0'
-                } `}
-                href={`/project/${image.projectSlug}`}
+            <Link
+              key={i}
+              className={`relative basis-1/3 ${
+                groupSelectors[i]
+              } overflow-hidden `}
+              href={`/project/${image.projectSlug}`}
+            >
+              {/* transition-[transform,opacity] duration-[900ms] 
+              ${
+                delays[i]
+              } ${
+                loaded
+                  ? 'translate-y-0 opacity-100'
+                  : '-translate-y-96 opacity-0'
+              }  */}
+              <Image
+                className={`relative transition-[filter,transform] duration-[900ms] blur-none ${groupImageFX[i]} pointer-events-none`}
+                src={url}
+                width={width}
+                height={height}
+                alt={alternativeText}
+                sizes={firstImage.sizes}
+                priority={true}
+                // onLoadingComplete={() => {
+                //   setLoaded(true);
+                //}}
+              />
+              <div
+                className={`absolute top-0 left-0 w-full h-full transition-opacity opacity-0 ${groupOpacities[i]} pointer-events-none duration-[900ms] bg-blue mix-blend-screen`}
+              ></div>
+              <div
+                className={`absolute top-0 left-0 w-full h-full transition-opacity opacity-0 ${groupOpacities[i]} pointer-events-none duration-[900ms]`}
               >
-                <Image
-                  className={`relative transition-[filter,border-radius] duration-[2100ms,300ms] grayscale-[50%] ${groupGrayscales[i]} pointer-events-none`}
-                  src={url}
-                  width={width}
-                  height={height}
-                  alt={alternativeText}
-                  sizes={firstImage.sizes}
-                  priority={true}
-                  onLoadingComplete={() => {
-                    setLoaded(true);
-                  }}
-                />
-
-                <div
-                  className={`absolute top-0 left-0 w-full h-full transition-opacity opacity-0 pointer-events-none ${groupOpacities[i]} delay-[900ms]`}
-                >
-                  <p className=' inline-block m-2 px-2 bg-primarytext text-offwhite'>
-                    {image.projectTitle}
-                  </p>
-                </div>
-              </Link>
+                <p className='inline-block m-2 px-2 bg-primarytext text-offwhite'>
+                  {image.projectTitle}
+                </p>
+              </div>
+            </Link>
           );
         }
       })}

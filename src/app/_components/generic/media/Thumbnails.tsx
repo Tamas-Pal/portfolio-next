@@ -37,15 +37,6 @@ export default function Thumbnails(props: { images: Media[] }) {
   return images.map((image: Media, i: number) => {
     const { url, width, height, projectSlug, alternativeText, projectTitle } =
       image.attributes;
-
-    /* const buffer = await fetch(url).then(async (res) =>
-      Buffer.from(await res.arrayBuffer())
-    );
-
-    const { base64 } = await getPlaiceholder(buffer, { size: 4 });*/
-
-    const orientation = width > height ? 'landscape' : 'portrait';
-
     let sizes = calculateSizes(width, height);
 
     if (url) {
@@ -56,31 +47,30 @@ export default function Thumbnails(props: { images: Media[] }) {
         >
           <Link
             key={i}
-            className={`relative w-full aspect-square hover:bg-none group ${loaded ? 'translate-y-0 opacity-100' : '-translate-y-96 opacity-0' } ${
+            className={`relative w-full aspect-square hover:bg-none group ${
+              loaded ? 'translate-y-0 opacity-100' : '-translate-y-96 opacity-0'
+            } ${
               i < delays.length ? delays[i] : ''
             } transition-[transform,opacity] duration-[1200ms]`}
             href={`/project/${projectSlug}`}
           >
             <Image
-              className={`object-cover object-center origin-left group-hover:grayscale pointer-events-none`}
+              className={`object-cover object-center origin-left group-hover:grayscale blur-none group-hover:blur-md pointer-events-none duration-[900ms]`}
               key={i}
               src={url}
               fill={true}
               alt={alternativeText}
-              //sizes={`calc(100vw-24px), (min-width: 1024px) calc((100vw-192px)/2), (min-width: 1536px) calc(((100vw-264px)*0.67-(128px/3)`}
               sizes={sizes}
               priority={i === 0 ? true : false}
-              //  placeholder="blur"
-              //  blurDataURL={base64}
               onLoadingComplete={() => {
                 setLoaded(true);
               }}
             />
             <div
-              className={`absolute top-0 left-0 w-full h-full bg-blue mix-blend-screen transition-opacity opacity-0 pointer-events-none group-hover:opacity-100`}
+              className={`absolute top-0 left-0 w-full h-full bg-blue mix-blend-screen transition-opacity opacity-0 group-hover:opacity-100 pointer-events-none duration-[900ms]`}
             ></div>
             <div
-              className={`absolute top-0 left-0 w-full h-full transition-opacity opacity-0 pointer-events-none group-hover:opacity-100 `}
+              className={`absolute top-0 left-0 w-full h-full transition-opacity opacity-0 group-hover:opacity-100 pointer-events-none duration-[900ms]`}
             >
               <p className='inline-block m-2 px-2 bg-primarytext text-offwhite font-regular'>
                 {projectTitle}

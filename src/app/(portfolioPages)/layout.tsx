@@ -12,11 +12,11 @@ export default async function PortfolioPages({
   return (
     <div
       id='wrapper'
-      className='bg-noise w-auto min-h-[calc(100vh-8px)] m-1 rounded-2xl simpleshadow 
+      className='bg-noise w-auto min-h-[calc(100vh+72px)] m-1 rounded-2xl simpleshadow 
       grid grid-cols-1 grid-rows-[auto_auto_auto_1fr_auto] justify-center items-start'
     >
       <PagesHeader />
-      <div className='px-4 sm:px-8 md:px-20 lg:px-32 flex justify-center'>
+      <div className='pt-0 md:pt-6 lg:pt-0 px-4 sm:px-8 md:px-20 lg:px-32 flex justify-center'>
         <p
           className={`w-[min(100%,1536px)] justify-self-center uppercase text-primarytext font-semibold flex justify-center md:justify-end mt-4 md:mt-[-16px] md:z-40`}
         >
