@@ -49,7 +49,7 @@ export default function HomeHeader() {
           isScrolled ? scrolledStyles : initStyles
         }`}
       >
-        <Link href='#intro-wrap'>
+        <Link href='/'>
           <Three />
         </Link>
       </header>
