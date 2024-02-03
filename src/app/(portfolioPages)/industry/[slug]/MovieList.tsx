@@ -14,9 +14,9 @@ export const MovieList = ({ moviesData }: { moviesData: Movie[] }) => {
             href={`/movie/${movie.attributes.Slug}`}
           >
             {movie.attributes.Movie}
-            <div
+            <span
           className='inline-block bg-arrow group-hover:bg-arrowblue transition duration-300 mt-1 -mb-0.5 ml-2 w-8 h-4 shrink-0' 
-        ></div>
+        ></span>
           </Link>
           <br />
           {movie.attributes.projects.data.map((project: Project) => (

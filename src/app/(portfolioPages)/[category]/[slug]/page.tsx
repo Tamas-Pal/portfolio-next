@@ -1,5 +1,5 @@
 import GenericResultsPage from './_components/GenericResultsPage';
-import categoryQuery from '@/app/_utils/categoryQuery';
+import getGenericCategoryData from '@/app/_utils/queries/getGenericCategoryData';
 import { Category } from '@/types/category';
 import { Field } from '@/types/field';
 import { Tech } from '@/types/tech';
@@ -32,17 +32,17 @@ export async function generateStaticParams() {
 }
 
 export default async function Category({ params }: Props) {
-  // the requestable types with all their mutations: relation field name, field name, api route
+  // the requestable types with all their mutations: field name as relation, field name, api route
   const allTypeFormats = {
     category: { relation: 'categories', title: 'Category', api: 'categories' },
     field: { relation: 'fields', title: 'Field', api: 'fields' },
     tech: { relation: 'techs', title: 'Tech', api: 'techs' },
   };
-
+  // pull out relevant formats
   const typeFormats: { relation: string; title: string; api: string } =
     allTypeFormats[params.category as keyof typeof allTypeFormats];
 
-  const { images, category } = await categoryQuery(params, typeFormats);
+  const { images, category } = await getGenericCategoryData(params, typeFormats);
 
   return (
     <GenericResultsPage

@@ -1,61 +1,36 @@
-'use client';
-
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
-import React, { useEffect, useState } from 'react';
-import { scrolledStyles, initStyles } from './styles/headerstyles';
+import Nav from './Nav';
+import Placeholder from '../animation/Three/Placeholder';
+import getIndustriesData from '@/app/_utils/queries/getIndustriesData';
 
 const Three = dynamic(() => import('../animation/Three/Three'), {
-  loading: () => (
-    <h1
-      className={`relative left-[36px] md:left-[50px] top-[26px] md:top-[40px] font-semibold text-[33px] 
-            md:text-[44px] text-4xl logo`}
-    >
-      TAMÁS PÁL
-    </h1>
-  ),
+  loading: () => <Placeholder />,
 });
 
-export default function PagesHeader() {
-  useEffect(() => {
-    window.addEventListener('scroll', handleScroll, { passive: true });
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
-
-  const [isScrolled, setScrolled] = useState(false);
-
-  // Handler when page is scrolled
-  const handleScroll = () => {
-    //console.log(window.scrollY);
-    if (window.scrollY > 0) {
-      setScrolled(true);
-    } else {
-      setScrolled(false);
-    }
-  };
+export default async function PagesHeader() {
+  const { data: industries } = await getIndustriesData();
 
   return (
-    <div
-      className={`sticky top-0 justify-self-center px-4 sm:px-8 md:mx-20 lg:px-32 2xl:mx-32 ${
-        isScrolled ? `h-[calc(60px+12px)]` : `h-[140px]`
-      } z-[100] w-full max-w-[1792px] transition-[height] duration-[900ms]`}
-    >
-      <div
-        className={`flex justify-center lg:justify-start relative max-w-[1536px] transition-all duration-[900ms] md:duration-[1800ms]`}
-      >
-        <header
-          className={`relative rounded-b-2xl transition-all duration-[900ms] md:duration-[1800ms] px-1.5 ${
-            isScrolled ? scrolledStyles : initStyles
-          } ${isScrolled ? `lg:-left-[calc(29px)]` : `lg:-left-[calc(52px)]`}`}
+    <header className='flex flex-col justify-center items-center mx-4 sm:mx-8 md:mx-20 lg:mx-32'>
+      <div className=' flex flex-col justify-center w-[min(100%,1536px)]'>
+        <Link
+          href='/'
+          className='relative self-center md:self-start md:-left-[34px] lg:-left-[45px] w-[calc(364px*.75)] h-[calc(120px*.75)] lg:w-[calc(364px*1)] lg:h-[calc(120px*1)]'
         >
-          <Link href='/'>
-            <Three />
-          </Link>
-        </header>
+          <Three />
+        </Link>
+        <p
+          className={`w-[min(100%,1536px)] justify-self-center uppercase text-primarytext font-semibold flex justify-center md:justify-end mt-4 lg:mt-[-14px] `}
+        >
+          <span className='mr-2 text-offwhite'>{'{'}</span>
+          <span className=''>design</span>
+          <span className='mx-4 text-offwhite'>&&</span>
+          <span className=''>development</span>
+          <span className='ml-2 text-offwhite'>{'}'}</span>
+        </p>
+        <Nav industries={industries} />
       </div>
-    </div>
+    </header>
   );
 }

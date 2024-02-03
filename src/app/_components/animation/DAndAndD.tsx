@@ -1,4 +1,4 @@
-import GridAnimation from './GridAnimaton';
+import GridAnimationSvg from './GridAnimationSvg';
 import Sine from './Sine';
 
 export default function DAndAndD() {
@@ -8,7 +8,7 @@ export default function DAndAndD() {
       className='relative max-w-[340px] min-h-[408px] overflow-hidden px-4 flex justify-center items-center'
     >
       <div id='grid' className='absolute overflow-hidden'>
-        <GridAnimation />
+        <GridAnimationSvg />
       </div>
       
       <div

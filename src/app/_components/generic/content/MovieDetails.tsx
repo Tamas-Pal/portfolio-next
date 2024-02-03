@@ -20,6 +20,7 @@ export default async function MovieDetails(props: {
 
   return (
     <>
+      {/* Show link to movie if called in the description of project */}
       <div className=''>
         {short ? (
           <>
@@ -33,13 +34,14 @@ export default async function MovieDetails(props: {
             />
           </>
         ) : (
+          // Show plain text title if dedicated movie page
           <h1
             className={`hidden lg:block place-self-center justify-self-start self-start title`}
           >
             {movie.Movie}
           </h1>
         )}
-
+        {/* Show extra details if dedicated movie page */}
         {!short && (
           <>
             <span className='inline-block lg:mt-4 uppercase tracking-wider font-semibold'>
@@ -58,7 +60,7 @@ export default async function MovieDetails(props: {
         </span>
         <ExternalLinks links={movie.Links} />
       </div>
-
+      {/* Show linked projects if dedicated movie page */}
       {!short && (
         <div className='-mt-4'>
           <ProjectList images={props.images!} />

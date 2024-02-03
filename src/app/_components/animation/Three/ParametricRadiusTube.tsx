@@ -171,7 +171,7 @@ export function ParametricRadiusTube() {
   const bgColor = new THREE.Color(0x0000ff);
   return (
     <>
-      <mesh ref={meshRef}>
+      <mesh ref={meshRef} position={[0.025,0,0]}>
         <bufferGeometry>
           <bufferAttribute
             attach='attributes-position'

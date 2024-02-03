@@ -6,12 +6,10 @@ import { Industry } from '@/types/industry';
 
 export default function Nav(props: { industries: Industry[] }) {
   const { industries } = props;
+
+  // track state of projects menu to reorder animation delays
   const [isOpen, setIsOpen] = useState(false);
-  /*const pathname = usePathname();
-  useEffect(() => {
-    setIsOpen(false);
-  }, [pathname]);
-*/
+
   const delayStyles = [
     `delay-[0ms]`,
     `delay-[75ms]`,
@@ -52,16 +50,13 @@ export default function Nav(props: { industries: Industry[] }) {
   const navAnimStyles = isOpen
     ? `
     ${navHeights[industries.length - 1]} 
-      origin-top scale-y-100  transition-all duration-[975ms]`
+      origin-top scale-y-100 transition-all duration-[975ms]`
     : `h-[4px] origin-top scale-y-0 transition-all duration-[975ms] ${
         delayStyles[industries.length]
       }`;
 
   return (
-    <nav
-      id='nav'
-      className={`mx-4 sm:mx-8 md:mx-20 lg:mx-32 flex justify-between mt-1 w-[min(100%,1536px)]`}
-    >
+    <nav id='nav' className={`flex justify-between mt-1`}>
       <div id='projects-wrapper'>
         <h3
           className='header-link'

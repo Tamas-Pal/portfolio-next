@@ -1,6 +1,11 @@
 import { Block } from '@/types/Block';
 import Link from 'next/link';
-import FeaturedImages from '../generic/media/FeaturedImages';
+import dynamic from 'next/dynamic';
+
+// dynamic load of images chunk
+const FeaturedImages = dynamic(() => import('../generic/media/FeaturedImages'), {
+  loading: () => <p>Loading...</p>,
+});
 
 export const IndustryBlock = ({
   industryBlock,

@@ -3,7 +3,7 @@ import { Project } from '@/types/project';
 import { Media } from '@/types/Media';
 import { PropField } from '@/types/PropField';
 
-export default async function categoryQuery(
+export default async function getGenericCategoryData(
   params: { category?: string; slug: string },
   typeFormats: { relation: string; title: string; api: string }
 ) {
@@ -24,11 +24,12 @@ export default async function categoryQuery(
       encodeValuesOnly: true,
     }
   );
-
   const { data: projects } = await fetch(
     `${process.env.CMS_APIURL}/projects?${imageQuery}`
   ).then((res) => res.json());
 
+  // put first linked image of each project in an array,
+  // and populate it with project's title and slug
   const images: Media[] = [];
   projects.map((project: Project, i: number) => {
     images[i] = project.attributes.Images!.data[0];
