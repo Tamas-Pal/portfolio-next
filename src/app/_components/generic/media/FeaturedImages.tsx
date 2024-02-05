@@ -99,26 +99,14 @@ export default function FeaturedImages({
       {images.map((image, i: number) => {
         const { url, width, height, alternativeText } = image;
 
-        const firstImage =
-          i === 0 && width >= height
-            ? {
-                span: '2xl:col-span-2',
-                sizes:
-                  '(min-width: 2860px) 1570px, (min-width: 1040px) calc(62.06vw - 192px), (min-width: 780px) calc(100vw - 168px), (min-width: 640px) calc(100vw - 72px), calc(100vw - 40px)',
-              }
-            : {
-                span: '',
-                sizes:
-                  '(min-width: 1540px) calc(33.01vw - 139px), (min-width: 1040px) calc(66.67vw - 240px), (min-width: 780px) calc(99.58vw - 165px), (min-width: 640px) calc(100vw - 72px), calc(100vw - 40px)',
-              };
+        const sizes =
+          '(min-width: 1880px) 440px, (min-width: 1040px) calc(30.85vw - 134px), (min-width: 780px) calc(100vw - 320px), (min-width: 640px) calc(100vw - 224px), calc(100vw - 168px)';
 
         if (url) {
           return (
             <Link
               key={i}
-              className={`relative basis-1/3 ${
-                groupSelectors[i]
-              } overflow-hidden `}
+              className={`relative basis-1/3 ${groupSelectors[i]} overflow-hidden `}
               href={`/project/${image.projectSlug}`}
             >
               {/* transition-[transform,opacity] duration-[900ms] 
@@ -135,7 +123,7 @@ export default function FeaturedImages({
                 width={width}
                 height={height}
                 alt={alternativeText}
-                sizes={firstImage.sizes}
+                sizes={sizes}
                 priority={true}
                 // onLoadingComplete={() => {
                 //   setLoaded(true);

@@ -37,7 +37,7 @@ export default function Profile({
       <div className='row-start-1 lg:row-auto flex flex-col gap-12 lg:justify-self-end 2xl:self-center'>
         <h1 className={`title lg:hidden`}>{title}</h1>
         <div className='max-w-[240px] sm:max-w-[320px] overflow-hidden justify-self-center self-center lg:justify-self-end'>
-          <Images images={[image]} clickable={false} />
+          <Images images={[image]} isProfile={true} />
         </div>
       </div>
     </div>
