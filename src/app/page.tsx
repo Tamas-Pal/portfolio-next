@@ -15,6 +15,7 @@ export default async function Home() {
   const Three = dynamic(() => import('./_components/animation/Three/Three'), {
     loading: () => <Placeholder />,
   });
+  
 
   return (
     <>
@@ -23,7 +24,7 @@ export default async function Home() {
         className='relative grid grid-cols-1 grid-rows-[auto_auto_1fr_auto] 
         w-auto min-h-[calc(100vh-8px)] m-1 
         bg-noisedarker
-        rounded-2xl simpleshadow' // mt-[-136px]
+        rounded-2xl simpleshadow'
       >
         <StickyHeader isPage={false} />
 

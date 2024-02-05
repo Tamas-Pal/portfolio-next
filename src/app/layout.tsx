@@ -2,6 +2,7 @@ import './globals.css';
 import type { Metadata } from 'next';
 import { inconsolata } from '@/app/_utils/fonts';
 
+
 export const metadata: Metadata = {
   title: 'Tamás Pál',
   description: 'Web Development and Graphic Design Portfolio',
