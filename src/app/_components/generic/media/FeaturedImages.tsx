@@ -1,10 +1,7 @@
-// 'use client';
-
 import { Media } from '@/types/Media';
 import { Project } from '@/types/project';
 import Image from 'next/image';
 import Link from 'next/link';
-//import { useState } from 'react';
 
 const delays = [
   'delay-[0ms,300ms,300ms]',
@@ -29,19 +26,7 @@ const delays = [
   'delay-[0ms,5700ms,5700ms]',
   'delay-[0ms,6000ms,6000ms]',
 ];
-/*
-let groupNames = ['one', 'two', 'three', 'four', 'five']
-let groupSelectors = []
-let groupOpacities = []
-let groupGrayscales = []
 
-for (let i = 0; i < 5; i++) {
-  groupSelectors.push(`group/${groupNames[i]}`)
-  groupOpacities.push(`group/${groupNames[i]}-hover:opacity-100`)
-  groupGrayscales.push(`group/${groupNames[i]}-hover:grayscale-0`)
-}
-console.log(groupSelectors, groupOpacities, groupGrayscales);
-*/
 
 let groupSelectors = [
   'group/one',
@@ -65,11 +50,11 @@ let groupGrayscales = [
   'group-hover/five:grayscale-0',
 ];
 let groupImageFX = [
-  'group-hover/one:blur-md group-hover/one:grayscale', // group-hover/one:scale-110
-  'group-hover/two:blur-md group-hover/two:grayscale', // group-hover/two:scale-110
-  'group-hover/three:blur-md group-hover/three:grayscale', // group-hover/three:scale-110
-  'group-hover/four:blur-md group-hover/four:grayscale', // group-hover/four:scale-110
-  'group-hover/five:blur-md group-hover/five:grayscale', // group-hover/five:scale-110
+  'group-hover/one:blur-md group-hover/one:grayscale',
+  'group-hover/two:blur-md group-hover/two:grayscale',
+  'group-hover/three:blur-md group-hover/three:grayscale',
+  'group-hover/four:blur-md group-hover/four:grayscale',
+  'group-hover/five:blur-md group-hover/five:grayscale',
 ];
 
 export default function FeaturedImages({
@@ -87,8 +72,6 @@ export default function FeaturedImages({
     images[i].projectTitle = project.attributes.Title;
     images[i].projectSlug = project.attributes.Slug;
   });
-
-  // const [loaded, setLoaded] = useState(false);
 
   return (
     <div
@@ -109,14 +92,6 @@ export default function FeaturedImages({
               className={`relative basis-1/3 ${groupSelectors[i]} overflow-hidden `}
               href={`/project/${image.projectSlug}`}
             >
-              {/* transition-[transform,opacity] duration-[900ms] 
-              ${
-                delays[i]
-              } ${
-                loaded
-                  ? 'translate-y-0 opacity-100'
-                  : '-translate-y-96 opacity-0'
-              }  */}
               <Image
                 className={`relative transition-[filter,transform] duration-[900ms] blur-none ${groupImageFX[i]} pointer-events-none`}
                 src={url}
@@ -125,9 +100,6 @@ export default function FeaturedImages({
                 alt={alternativeText}
                 sizes={sizes}
                 priority={true}
-                // onLoadingComplete={() => {
-                //   setLoaded(true);
-                //}}
               />
               <div
                 className={`absolute top-0 left-0 w-full h-full transition-opacity opacity-0 ${groupOpacities[i]} pointer-events-none duration-[900ms] bg-blue mix-blend-screen`}

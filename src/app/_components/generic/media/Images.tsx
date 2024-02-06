@@ -84,13 +84,13 @@ export default function Images({
               className={`relative ${imageProps.span} flex items-start overflow-hidden`}
             >
               <div
-                className={`transition duration-[1200ms] cursor-pointer group ${
+                className={`transition duration-[1200ms] ${!isProfile && 'cursor-pointer'} group ${
                   loaded
                     ? 'opacity-100 translate-y-0'
                     : 'opacity-0 -translate-y-96'
                 } ${i < delays.length ? delays[i] : ''}`}
                 onClick={() => {
-                  isProfile &&
+                  !isProfile &&
                     setClicked({
                       url,
                       width,
@@ -103,7 +103,7 @@ export default function Images({
               >
                 <Image
                   className={`object-contain object-left relative transition-[transform,filter] duration-[2100ms,900ms] ${
-                    isProfile &&
+                    !isProfile &&
                     'grayscale-0 group-hover:grayscale blur-none group-hover:blur-md'
                   } pointer-events-none`}
                   src={url}
@@ -116,7 +116,7 @@ export default function Images({
                     setLoaded(true);
                   }}
                 />
-                {isProfile && (
+                {!isProfile && (
                   <>
                     <div
                       className={`absolute top-0 left-0 cursor-pointer w-full h-full bg-blue mix-blend-screen opacity-0 group-hover:opacity-100 transition-[opacity] duration-[900ms] pointer-events-none `}
@@ -135,7 +135,7 @@ export default function Images({
           );
         }
       })}
-      {isProfile && (
+      {!isProfile && (
         <div
           className={`fixed bg-offwhite top-0 left-0 w-full h-full z-[110] cursor-pointer origin-left duration-300 transition-[opacity,transform] ${clicked.transformStyles[1]} ${clicked.modalDelayStyles[0]}`}
           onClick={() => {
