@@ -31,7 +31,7 @@ export default async function Home() {
         {/* landing screen */}
         <div
           id='intro-wrap'
-          className='flex flex-col items-center justify-between min-h-[calc(100vh-56px)] -mt-10' // mb-[-32px] pb-8
+          className='flex flex-col items-center justify-between min-h-[calc(100vh-72px)] -mt-10' // mb-[-32px] pb-8
         >
           {/* placeholder div for header */}
           <div className='h-[72px]'></div>
