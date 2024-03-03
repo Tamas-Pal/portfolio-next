@@ -69,14 +69,9 @@ export function ParametricRadiusTube() {
       const segmentRadius = calculateRadius(radius, i);
       for (let j = 0; j <= radialSegments; j++) {
         const veticePos = (i * (radialSegments + 1) + j) * 3;
-        array[veticePos] =
-          P.x + segmentRadius * tubeNormals[veticePos];
-        array[veticePos + 1] =
-          P.y +
-          segmentRadius * tubeNormals[veticePos + 1];
-        array[veticePos + 2] =
-          P.z +
-          segmentRadius * tubeNormals[veticePos + 2];
+        array[veticePos] = P.x + segmentRadius * tubeNormals[veticePos];
+        array[veticePos + 1] = P.y + segmentRadius * tubeNormals[veticePos + 1];
+        array[veticePos + 2] = P.z + segmentRadius * tubeNormals[veticePos + 2];
         // array[veticePos]=vertex.x
         // array[veticePos+1]=vertex.y
         // array[veticePos+2]=vertex.z
@@ -94,7 +89,7 @@ export function ParametricRadiusTube() {
       let bumpCount = (Math.sin(time) + 1) * 0.5 * twirlCount + twirlCount * 6;
 
       // normalized starting points for closing up the ends of tube
-      const cutOffPoints = [0.2, 0.8];
+      const cutOffPoints = [0.175, 0.825];
       let cutOff = 1;
       if (segmentPosition < cutOffPoints[0]) {
         cutOff = segmentPosition * (1 / cutOffPoints[0]);
@@ -131,26 +126,23 @@ export function ParametricRadiusTube() {
     return new Float32Array(uvs);
   }, []);
 
-  const tubeIndices = useMemo(
-    function generateIndices() {
-      const indices: number[] = [];
-      for (let j = 1; j <= tubularSegments; j++) {
-        for (let i = 1; i <= radialSegments; i++) {
-          const a = (radialSegments + 1) * (j - 1) + (i - 1);
-          const b = (radialSegments + 1) * j + (i - 1);
-          const c = (radialSegments + 1) * j + i;
-          const d = (radialSegments + 1) * (j - 1) + i;
+  const tubeIndices = useMemo(function generateIndices() {
+    const indices: number[] = [];
+    for (let j = 1; j <= tubularSegments; j++) {
+      for (let i = 1; i <= radialSegments; i++) {
+        const a = (radialSegments + 1) * (j - 1) + (i - 1);
+        const b = (radialSegments + 1) * j + (i - 1);
+        const c = (radialSegments + 1) * j + i;
+        const d = (radialSegments + 1) * (j - 1) + i;
 
-          // faces
+        // faces
 
-          indices.push(a, b, d);
-          indices.push(b, c, d);
-        }
+        indices.push(a, b, d);
+        indices.push(b, c, d);
       }
-      return new Uint16Array(indices);
-    },
-    []
-  );
+    }
+    return new Uint16Array(indices);
+  }, []);
 
   const meshRef = useRef<THREE.Mesh>(null!);
   const bufferRef = useRef<THREE.BufferAttribute>(null!);

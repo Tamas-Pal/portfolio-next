@@ -46,15 +46,15 @@ export default async function Home() {
           </div>
           {/* navigation */}
           <div className='sm:self-stretch flex justify-center'>
-            <Nav industries={industries} />
+            {/* <Nav industries={industries} /> */}
           </div>
         </div>
 
         {/* Featured project groups (Industries) and profile */}
         <main id='projects' className='z-10 pt-8'>
-          <Blocks landing={landing} />
+          {/* <Blocks landing={landing} /> */}
         </main>
-        <Footer />
+        {/* <Footer /> */}
       </div>
     </>
   );

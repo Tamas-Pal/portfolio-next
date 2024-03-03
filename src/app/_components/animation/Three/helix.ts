@@ -1,10 +1,10 @@
 import * as THREE from 'three';
 
 export default function helix() {
-  const twirlCount = 1.75;
+  const twirlCount = 1.5;
   const helixLength = 3.5;
   const helixRadius = 0.4;
-  const pointCount = twirlCount * 26;
+  const pointCount = twirlCount * 24;
   const stepsPerTwirl = twirlCount / pointCount;
   const tubeRadius = 0.125;
   const axialSegments = pointCount;
