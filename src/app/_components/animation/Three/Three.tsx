@@ -21,7 +21,7 @@ export default function Three() {
       <Stats />
       {isVisible && (
         <>
-          <ParametricRadiusTube />
+          {/* <ParametricRadiusTube /> */}
           <Center>
             <Text3D
               font={font as unknown as FontData}
