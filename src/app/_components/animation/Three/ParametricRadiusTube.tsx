@@ -30,6 +30,7 @@ export function ParametricRadiusTube() {
   const vertex = new THREE.Vector3();
   const normal = new THREE.Vector3();
   const uv = new THREE.Vector2();
+  let P = new THREE.Vector3();
 
   const tubeNormals = useMemo(function generateNormals() {
     let P = new THREE.Vector3();
@@ -60,28 +61,30 @@ export function ParametricRadiusTube() {
     return new Float32Array(normals);
   }, []);
 
-  const generateVertices = () => {
-    let P = new THREE.Vector3();
+  const generateVertices = (array: Float32Array) => {
     const vertices: number[] = [];
     for (let i = 0; i <= tubularSegments; i++) {
       P = path.getPointAt(i / tubularSegments, P);
 
       const segmentRadius = calculateRadius(radius, i);
       for (let j = 0; j <= radialSegments; j++) {
-        vertex.x =
-          P.x + segmentRadius * tubeNormals[(i * (radialSegments + 1) + j) * 3];
-        vertex.y =
+        const veticePos = (i * (radialSegments + 1) + j) * 3;
+        array[veticePos] =
+          P.x + segmentRadius * tubeNormals[veticePos];
+        array[veticePos + 1] =
           P.y +
-          segmentRadius * tubeNormals[(i * (radialSegments + 1) + j) * 3 + 1];
-        vertex.z =
+          segmentRadius * tubeNormals[veticePos + 1];
+        array[veticePos + 2] =
           P.z +
-          segmentRadius * tubeNormals[(i * (radialSegments + 1) + j) * 3 + 2];
-
-        vertices.push(vertex.x, vertex.y, vertex.z);
+          segmentRadius * tubeNormals[veticePos + 2];
+        // array[veticePos]=vertex.x
+        // array[veticePos+1]=vertex.y
+        // array[veticePos+2]=vertex.z
+        //vertices.push(vertex.x, vertex.y, vertex.z);
       }
     }
 
-    return new Float32Array(vertices);
+    //return new Float32Array(vertices);
 
     function calculateRadius(radius: number, i: number) {
       const minRadius = 0.67;
@@ -112,23 +115,21 @@ export function ParametricRadiusTube() {
     }
   };
 
-  const tubePoints = useMemo(generateVertices, [time]);
+  const tubePoints = new Float32Array(966);
+  generateVertices(tubePoints);
 
-  const tubeUvs = useMemo(
-    function generateUVs() {
-      const uvs: number[] = [];
-      for (let i = 0; i <= tubularSegments; i++) {
-        for (let j = 0; j <= radialSegments; j++) {
-          uv.x = i / tubularSegments;
-          uv.y = j / radialSegments;
+  const tubeUvs = useMemo(function generateUVs() {
+    const uvs: number[] = [];
+    for (let i = 0; i <= tubularSegments; i++) {
+      for (let j = 0; j <= radialSegments; j++) {
+        uv.x = i / tubularSegments;
+        uv.y = j / radialSegments;
 
-          uvs.push(uv.x, uv.y);
-        }
+        uvs.push(uv.x, uv.y);
       }
-      return new Float32Array(uvs);
-    },
-    [tubularSegments, radialSegments]
-  );
+    }
+    return new Float32Array(uvs);
+  }, []);
 
   const tubeIndices = useMemo(
     function generateIndices() {
@@ -148,7 +149,7 @@ export function ParametricRadiusTube() {
       }
       return new Uint16Array(indices);
     },
-    [radialSegments, tubularSegments]
+    []
   );
 
   const meshRef = useRef<THREE.Mesh>(null!);
@@ -157,7 +158,9 @@ export function ParametricRadiusTube() {
   // radius and rotation changes each frame
   useFrame(({ clock }) => {
     time = clock.getElapsedTime() * timeMultiplier;
-    bufferRef.current.array = generateVertices();
+    //bufferRef.current.array = generateVertices();
+    generateVertices(bufferRef.current.array as Float32Array);
+    //console.log(bufferRef.current.array);
     bufferRef.current.needsUpdate = true;
     meshRef.current.rotation.x = rangeMap(
       Math.cos(time),
