@@ -10,8 +10,8 @@ type Options = {
 // custom hook returning ref and state of connected IntersectionObserver
 export function useIsVisible(
   options: Options
-): [MutableRefObject<HTMLElement>, boolean] {
-  const containerRef = useRef<HTMLElement>(null!);
+): [MutableRefObject<HTMLCanvasElement>, boolean] {
+  const containerRef = useRef<HTMLCanvasElement>(null!);
   const [isIntersecting, setIntersecting] = useState(false);
 
   const intersectionCallback = (entries: IntersectionObserverEntry[]): void => {
