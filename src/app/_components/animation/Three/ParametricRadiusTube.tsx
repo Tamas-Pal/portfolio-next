@@ -104,7 +104,7 @@ export function ParametricRadiusTube() {
     }
   };
 
-  const tubePoints = new Float32Array(966);
+  const tubePoints = new Float32Array(776);
   generateVertices(tubePoints);
 
   const tubeUvs = useMemo(function generateUVs() {
