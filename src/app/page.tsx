@@ -39,7 +39,7 @@ export default async function Home() {
           {/* threejs animation */}
           <div className='w-3/4 flex flex-col lg:flex-row justify-between xl:justify-around items-center gap-y-4 sm:gap-y-8 md:gap-y-16'>
             <div className='w-[calc(364px*.75)] h-[calc(120px*.75)] sm:w-[calc(364px*1)] sm:h-[calc(120px*1)] 2xl:w-[calc(364px*1.5)] 2xl:h-[calc(120px*1.5)]'>
-              <Three />
+              {/* <Three /> */}
             </div>
             {/* design and development animation */}
             <DAndAndD />
