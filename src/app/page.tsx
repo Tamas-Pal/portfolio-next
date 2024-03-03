@@ -42,7 +42,7 @@ export default async function Home() {
               <Three />
             </div>
             {/* design and development animation */}
-            <DAndAndD />
+            {/* <DAndAndD /> */}
           </div>
           {/* navigation */}
           <div className='sm:self-stretch flex justify-center'>
