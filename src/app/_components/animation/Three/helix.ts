@@ -4,11 +4,11 @@ export default function helix() {
   const twirlCount = 1.5;
   const helixLength = 3.5;
   const helixRadius = 0.4;
-  const pointCount = twirlCount * 24;
+  const pointCount = twirlCount * 8;
   const stepsPerTwirl = twirlCount / pointCount;
   const tubeRadius = 0.125;
   const axialSegments = pointCount;
-  const radialSegments = 6;
+  const radialSegments = 4;
 
   const helixPoints: THREE.Vector3[] = [];
 

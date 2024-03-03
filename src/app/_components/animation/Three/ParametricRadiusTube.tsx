@@ -72,14 +72,8 @@ export function ParametricRadiusTube() {
         array[veticePos] = P.x + segmentRadius * tubeNormals[veticePos];
         array[veticePos + 1] = P.y + segmentRadius * tubeNormals[veticePos + 1];
         array[veticePos + 2] = P.z + segmentRadius * tubeNormals[veticePos + 2];
-        // array[veticePos]=vertex.x
-        // array[veticePos+1]=vertex.y
-        // array[veticePos+2]=vertex.z
-        //vertices.push(vertex.x, vertex.y, vertex.z);
       }
     }
-
-    //return new Float32Array(vertices);
 
     function calculateRadius(radius: number, i: number) {
       const minRadius = 0.67;
