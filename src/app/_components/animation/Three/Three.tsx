@@ -1,12 +1,11 @@
 'use client';
 
 import { Center, FontData, Text3D } from '@react-three/drei';
-import { Stats } from '@react-three/drei';
+// import { Stats } from '@react-three/drei';
 import { Canvas } from '@react-three/fiber';
 import font from './font.json';
 import { ParametricRadiusTube } from './ParametricRadiusTube';
 import { useIsVisible } from '@/app/_utils/useIsVisible';
-import { useRef } from 'react';
 
 export default function Three() {
   const [containerRef, isVisible] = useIsVisible({
@@ -19,7 +18,7 @@ export default function Three() {
     <Canvas 
     //resize={{ debounce: 0 }} 
     camera={{ fov: 14 }} ref={containerRef}>
-      <Stats />
+      {/* <Stats /> */}
       {isVisible && (
         <>
           <ParametricRadiusTube />
