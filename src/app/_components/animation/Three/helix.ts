@@ -1,7 +1,7 @@
 import * as THREE from 'three';
 
 export default function helix() {
-  const twirlCount = 1.5;
+  const twirlCount = 15;
   const helixLength = 3.5;
   const helixRadius = 0.4;
   const pointCount = twirlCount * 24;
