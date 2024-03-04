@@ -55,7 +55,7 @@ export function Block({
     <>
       <section
         ref={containerRef}
-        className={`${padding} relative overflow-hidden ${zIndex[index]} ${
+        className={`${padding} relative overflow-hidden -mb-2 ${zIndex[index]} ${
           isVisible ? padding : padding
         } grid justify-stretch  ${backgroundColor} border-t border-offwhite rounded-t-2xl upshadow transition-all duration-[900ms] 
        group`}
@@ -63,8 +63,8 @@ export function Block({
         <div
           className={`relative grid justify-stretch items-center lg:transition-[transform,opacity] lg:duration-[900ms] ${
             isVisible
-              ? 'translate-y-0 opacity-100'
-              : 'translate-y-[48px] opacity-0' // translate-y-[32px] 
+              ? 'lg:translate-y-0 lg:opacity-100'
+              : 'lg:translate-y-[48px] lg:opacity-0' // translate-y-[32px] 
           }`}
         >
           {children}
