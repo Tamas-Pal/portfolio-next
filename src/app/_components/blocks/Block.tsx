@@ -63,8 +63,8 @@ export function Block({
         <div
           className={`relative grid justify-stretch items-center lg:transition-[transform,opacity] lg:duration-[900ms] ${
             isVisible
-              ? 'lg:translate-y-0 lg:opacity-100'
-              : 'lg:translate-y-[48px] lg:opacity-0' // translate-y-[32px] 
+              ? 'translate-y-0 opacity-100'
+              : 'translate-y-[48px] opacity-0' // translate-y-[32px] 
           }`}
         >
           {children}
