@@ -188,7 +188,7 @@ export function ParametricRadiusTube() {
             itemSize={1}
           />
         </bufferGeometry>
-        {/* <MeshTransmissionMaterial
+        <MeshTransmissionMaterial
           background={bgColor}
           backside={false}
           samples={24}
@@ -209,7 +209,7 @@ export function ParametricRadiusTube() {
           attenuationColor='#ffffff'
           color='#fff'
           toneMapped={false}
-        /> */}
+        />
         <meshBasicMaterial color={bgColor} toneMapped={false} />
       </mesh>
     </>
