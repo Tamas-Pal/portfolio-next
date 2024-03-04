@@ -16,7 +16,6 @@ export default function Three() {
 
   return (
     <Canvas 
-    //resize={{ debounce: 0 }} 
     camera={{ fov: 14 }} ref={containerRef}>
       <Stats />
       {isVisible && (
@@ -29,7 +28,9 @@ export default function Three() {
               position={[-0.1, 0.1, 0]}
             >
               TAMÁS PÁL
-              <meshBasicMaterial color={0xf1f5f9} toneMapped={false} />
+              <meshBasicMaterial 
+              color={0xf1f5f9} 
+              toneMapped={false} />
             </Text3D>
           </Center>
         </>

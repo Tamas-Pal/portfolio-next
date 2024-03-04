@@ -12,7 +12,7 @@ export default async function Footer() {
   const result = await res.json();
 
   return (
-    <footer className='-mt-3 w-auto bg-noisedarker bg-repeat [background-size:150px_150px] border-t border-offwhite rounded-2xl z-40'>
+    <footer className='-mt-3 w-auto bg-noisedarker border-t border-offwhite rounded-2xl z-40'>
       <div className='px-4 sm:px-8 md:px-20 lg:px-32 py-12 flex justify-center'>
         <div className='w-[min(100%,1536px)] flex justify-between items-center'>
           <div className='flex flex-col'>
