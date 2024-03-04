@@ -24,7 +24,7 @@ export default async function Home() {
         id='wrapper'
         className='relative grid grid-cols-1 grid-rows-[auto_auto_1fr_auto] 
         w-auto min-h-[calc(100vh-8px)] m-1 
-        bg-noisedarker
+        bg-noisedarkeranim
         rounded-2xl simpleshadow'
       >
         <StickyHeader isPage={false} />
