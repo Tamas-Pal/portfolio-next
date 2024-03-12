@@ -4,6 +4,7 @@ import bundleAnalyzer from '@next/bundle-analyzer';
 1;
 
 const nextConfig = {
+  output: 'export',
   webpack: (
     config,
     { buildId, dev, isServer, defaultLoaders, nextRuntime, webpack }

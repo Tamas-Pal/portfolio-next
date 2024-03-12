@@ -26,7 +26,7 @@ export default async function getGenericCategoryData(
   );
   const { data: projects } = await fetch(
     `${process.env.CMS_APIURL}/projects?${imageQuery}`
-  ).then((res) => res.json());
+    , { cache: 'force-cache' }).then((res) => res.json());
 
   // put first linked image of each project in an array,
   // and populate it with project's title and slug
@@ -38,7 +38,7 @@ export default async function getGenericCategoryData(
   });
 
   const { data } = await fetch(
-    `${process.env.CMS_APIURL}/${typeFormats.api}/?populate=*&filters[Slug][$eq]=${params.slug}`
+    `${process.env.CMS_APIURL}/${typeFormats.api}/?populate=*&filters[Slug][$eq]=${params.slug}`, { cache: 'force-cache' }
   ).then((res) => res.json());
 
   let category = data[0].attributes[typeFormats.title];
