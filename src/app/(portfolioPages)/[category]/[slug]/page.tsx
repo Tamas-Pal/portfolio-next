@@ -36,7 +36,6 @@ export async function generateStaticParams() {
       }
     })
   );
-console.log(paramsArray);
 
   return paramsArray;
 }

@@ -18,9 +18,11 @@ export async function generateStaticParams() {
     `${process.env.CMS_APIURL}/projects`,
     {}
   ).then((res) => res.json());
-  return projects.map((project: Project) => ({
+  const projectParams = projects.map((project: Project) => ({
     slug: project.attributes.Slug,
   }));
+  console.log(projectParams);
+  return projectParams
 }
 
 export default async function Project({ params }: Props) {
