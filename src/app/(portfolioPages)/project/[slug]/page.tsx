@@ -21,7 +21,6 @@ export async function generateStaticParams() {
   const projectParams = projects.map((project: Project) => ({
     slug: project.attributes.Slug,
   }));
-  console.log(projectParams);
   return projectParams
 }
 

@@ -144,9 +144,7 @@ export function ParametricRadiusTube() {
   // radius and rotation changes each frame
   useFrame(({ clock }) => {
     time = clock.getElapsedTime() * timeMultiplier;
-    //bufferRef.current.array = generateVertices();
     generateVertices(bufferRef.current.array as Float32Array);
-    //console.log(bufferRef.current.array);
     bufferRef.current.needsUpdate = true;
     meshRef.current.rotation.x = rangeMap(
       Math.cos(time),
