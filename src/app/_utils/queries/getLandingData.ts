@@ -49,6 +49,10 @@ const landingQuery = () =>
           },
         },
       },
+      pagination: {
+        pageSize: 100,
+        page: 1,
+      },
     },
     {
       encodeValuesOnly: true, // prettify URL

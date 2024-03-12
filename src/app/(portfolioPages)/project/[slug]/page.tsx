@@ -15,7 +15,7 @@ type Props = {
 
 export async function generateStaticParams() {
   const { data: projects } = await fetch(
-    `${process.env.CMS_APIURL}/projects`,
+    `${process.env.CMS_APIURL}/projects?pagination[page]=1&pagination[pageSize]=100`,
     {}
   ).then((res) => res.json());
   const projectParams = projects.map((project: Project) => ({

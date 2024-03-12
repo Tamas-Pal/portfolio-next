@@ -19,6 +19,10 @@ export default async function getGenericCategoryData(
           },
         },
       },
+      pagination: {
+        pageSize: 100,
+        page: 1,
+      },
     },
     {
       encodeValuesOnly: true,

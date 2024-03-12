@@ -33,7 +33,7 @@ export default async function Industry({ params }: Props) {
   // separate query for movie list if relevant
   if (params.slug === 'the-movies') {
     const { data } = await fetch(
-      `${process.env.CMS_APIURL}/movies?populate[0]=projects&sort[0]=ProductionYear:desc`
+      `${process.env.CMS_APIURL}/movies?populate[0]=projects&sort[0]=ProductionYear:desc&pagination[page]=1&pagination[pageSize]=100`
     ).then((res) => res.json());
     moviesData = data;
   }

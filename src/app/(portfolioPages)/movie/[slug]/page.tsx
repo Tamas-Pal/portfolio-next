@@ -14,7 +14,7 @@ type Props = {
 
 export async function generateStaticParams() {
   const { data: movies } = await fetch(
-    `${process.env.CMS_APIURL}/movies`,
+    `${process.env.CMS_APIURL}/movies?pagination[page]=1&pagination[pageSize]=100`,
     {}
   ).then((res) => res.json());
 
