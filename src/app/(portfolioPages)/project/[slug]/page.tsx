@@ -15,7 +15,6 @@ type Props = {
 
 export async function generateStaticParams() {
   const { data: projects } = await fetch(`${process.env.CMS_APIURL}/projects`, {
-    //cache: 'no-store',
   }).then((res) => res.json());
   return projects.map((project: Project) => project.attributes.Slug);
 }
@@ -23,7 +22,6 @@ export async function generateStaticParams() {
 export default async function Project({ params }: Props) {
   const { data } = await fetch(
     `${process.env.CMS_APIURL}/projects/?populate=*&filters[Slug][$eq]=${params.slug}`
-    // { cache: 'no-store' }
   ).then((res) => res.json());
 
   const project = data[0].attributes;

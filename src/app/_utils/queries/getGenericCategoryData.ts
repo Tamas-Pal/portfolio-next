@@ -37,24 +37,11 @@ export default async function getGenericCategoryData(
     images[i]!.attributes.projectTitle = project.attributes.Title;
   });
 
-  let category: PropField;
-  // 1. if no projects:
-  if (!projects[0] || !projects[0].attributes[typeFormats.relation].data) {
-    // (Category name is fetched through relation field of project,
-    // so if there are no projects, a new fetch is needed for the category.)
-    const { data } = await fetch(
-      `${process.env.CMS_APIURL}/${typeFormats.api}/?populate=*&filters[Slug][$eq]=${params.slug}`
-    ).then((res) => res.json());
+  const { data } = await fetch(
+    `${process.env.CMS_APIURL}/${typeFormats.api}/?populate=*&filters[Slug][$eq]=${params.slug}`
+  ).then((res) => res.json());
 
-    category = data[0].attributes;
-
-    // 2. if there is an array of projects >>
-  } else if (Array.isArray(projects[0].attributes[typeFormats.relation].data)) {
-    category = projects[0].attributes[typeFormats.relation].data[0].attributes;
-    // 3. if there is only one project >>
-  } else {
-    category = projects[0].attributes[typeFormats.relation].data.attributes;
-  }
+  let category = data[0].attributes[typeFormats.title];
 
   return { images, category };
 }

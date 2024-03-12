@@ -15,15 +15,14 @@ export async function generateStaticParams() {
   const paramsArray: {}[] = [];
 
   await Promise.all(
-    categoryTypes.map(async (categoryType, i) => {
+    categoryTypes.map(async (categoryType) => {
       const { data } = await fetch(
         `${process.env.CMS_APIURL}/${categoryType}`
       ).then((res) => res.json());
 
       if (data) {
-        return data.map((item: Category | Field | Tech, j: number) => {
-          let index = i * categoryTypes.length + j;
-          paramsArray[index] = { [categoryType]: item.attributes.Slug };
+        return data.map((item: Category | Field | Tech) => {
+          paramsArray.push({ [categoryType]: item.attributes.Slug });
         });
       }
     })
@@ -42,13 +41,15 @@ export default async function Category({ params }: Props) {
   const typeFormats: { relation: string; title: string; api: string } =
     allTypeFormats[params.category as keyof typeof allTypeFormats];
 
-  const { images, category } = await getGenericCategoryData(params, typeFormats);
+  const { images, category } = await getGenericCategoryData(
+    params,
+    typeFormats
+  );
 
   return (
     <GenericResultsPage
       images={images}
       category={category}
-      typeFormats={typeFormats}
     />
   );
 }
