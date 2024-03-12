@@ -8,15 +8,17 @@ const qs = require('qs');
 
 type Props = {
   images: Media[];
-  category: string;
+  category: PropField;
+  typeFormats: { relation: string; title: string; api: string };
 };
 
 export default async function GenericResultsPage({
   images,
   category,
+  typeFormats,
 }: Props) {
-  // console.log(typeFormats.title, category[typeFormats.title as keyof PropField]);
-  
+  const categoryTitle = category[typeFormats.title as keyof PropField];
+
   return (
     <div id='content' className={gridStyles + ' lg:grid-cols-[1fr_2fr]'}>
       <section
@@ -24,7 +26,7 @@ export default async function GenericResultsPage({
         className='lg:hidden flex flex-col justify-start mt-2 lg:mt-0 gap-y-4'
       >
         <h1 id='mobile-title' className={`justify-self-start self-start title`}>
-          {category}
+          {categoryTitle as string}
         </h1>
       </section>
 
@@ -43,7 +45,7 @@ export default async function GenericResultsPage({
           id='title'
           className={`hidden lg:block place-self-center justify-self-start self-start title`}
         >
-          {category}
+          {categoryTitle as string}
         </h1>
         <div className='-mt-4'>
           <ProjectList images={images} />

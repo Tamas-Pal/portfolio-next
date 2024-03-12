@@ -17,7 +17,8 @@ export async function generateStaticParams() {
     `${process.env.CMS_APIURL}/movies`,
     {}
   ).then((res) => res.json());
-  return movies.map((movie: Movie) => movie.attributes.Slug);
+
+  return movies.map((movie: Movie) => ({ slug: movie.attributes.Slug }));
 }
 
 export default async function Movie({ params }: Props) {

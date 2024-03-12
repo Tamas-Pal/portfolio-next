@@ -41,7 +41,7 @@ export default async function getGenericCategoryData(
     `${process.env.CMS_APIURL}/${typeFormats.api}/?populate=*&filters[Slug][$eq]=${params.slug}`, { cache: 'force-cache' }
   ).then((res) => res.json());
 
-  let category = data[0].attributes[typeFormats.title];
+  let category = data[0].attributes;
 
   return { images, category };
 }

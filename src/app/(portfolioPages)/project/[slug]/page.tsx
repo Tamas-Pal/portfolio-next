@@ -14,9 +14,13 @@ type Props = {
 };
 
 export async function generateStaticParams() {
-  const { data: projects } = await fetch(`${process.env.CMS_APIURL}/projects`, {
-  }).then((res) => res.json());
-  return projects.map((project: Project) => project.attributes.Slug);
+  const { data: projects } = await fetch(
+    `${process.env.CMS_APIURL}/projects`,
+    {}
+  ).then((res) => res.json());
+  return projects.map((project: Project) => ({
+    slug: project.attributes.Slug,
+  }));
 }
 
 export default async function Project({ params }: Props) {

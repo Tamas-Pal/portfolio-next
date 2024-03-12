@@ -9,34 +9,39 @@ type Props = {
   searchParams: {};
 };
 
+// the requestable types with all their mutations: field name as relation, field name, api route
+const allTypeFormats = {
+  category: { relation: 'categories', title: 'Category', api: 'categories' },
+  field: { relation: 'fields', title: 'Field', api: 'fields' },
+  tech: { relation: 'techs', title: 'Tech', api: 'techs' },
+};
+
 // request all params for each category type
 export async function generateStaticParams() {
-  const categoryTypes = ['categories', 'fields', 'techs'];
   const paramsArray: {}[] = [];
 
   await Promise.all(
-    categoryTypes.map(async (categoryType) => {
+    Object.entries(allTypeFormats).map(async (typeFormat) => {
       const { data } = await fetch(
-        `${process.env.CMS_APIURL}/${categoryType}`
+        `${process.env.CMS_APIURL}/${typeFormat[1].api}`
       ).then((res) => res.json());
 
       if (data) {
         return data.map((item: Category | Field | Tech) => {
-          paramsArray.push({ [categoryType]: item.attributes.Slug });
+          paramsArray.push({
+            category: typeFormat[0],
+            slug: item.attributes.Slug,
+          });
         });
       }
     })
   );
+console.log(paramsArray);
+
   return paramsArray;
 }
 
 export default async function Category({ params }: Props) {
-  // the requestable types with all their mutations: field name as relation, field name, api route
-  const allTypeFormats = {
-    category: { relation: 'categories', title: 'Category', api: 'categories' },
-    field: { relation: 'fields', title: 'Field', api: 'fields' },
-    tech: { relation: 'techs', title: 'Tech', api: 'techs' },
-  };
   // pull out relevant formats
   const typeFormats: { relation: string; title: string; api: string } =
     allTypeFormats[params.category as keyof typeof allTypeFormats];
@@ -50,6 +55,7 @@ export default async function Category({ params }: Props) {
     <GenericResultsPage
       images={images}
       category={category}
+      typeFormats={typeFormats}
     />
   );
 }
