@@ -62,7 +62,7 @@ export default async function Project({ params }: Props) {
         </h1>
         <div
           id='description'
-          className='font-semibold uppercase tracking-widest max-w-prose'
+          className='font-regular max-w-prose'
         >
           <Markdown mdxSource={description} />
         </div>
